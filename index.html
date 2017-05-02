@@ -3,15 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <title>Greenpeace Quiz </title>
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    <script
-            src="https://code.jquery.com/jquery-3.2.1.min.js"
-            integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
-            crossorigin="anonymous"></script>
-    <!-- Latest compiled and minified JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.js" crossorigin="anonymous"></script>
+    <script src="asset/jquery/jquery-3.2.1.min.js"></script>
+    <link rel="stylesheet" href="asset/bootstrap/css/bootstrap.min.css">
+    <script src="asset/bootstrap/js/bootstrap.js"></script>
     <link type="text/css" rel="stylesheet" href="style.css">
 
     <script>
@@ -30,7 +24,7 @@
             var c_count = $(".panel-heading.selected").length;
             if (c_count == total_categories) {
                 $("#result-btn").removeClass("hidden");
-            }
+            }else if(c_count == 0){ $("#result-btn").addClass("hidden");}
         }
         function showResults() {  //$('#modal_result').modal();
             var res = $('#cat_list');
