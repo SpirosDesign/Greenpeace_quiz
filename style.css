@@ -59,3 +59,7 @@
 .panel-heading{
     background-color: #66CC00;
 }
+
+#most_answered_category{
+    font-size: 1.5em;
+}
