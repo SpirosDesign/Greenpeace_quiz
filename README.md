@@ -1,6 +1,6 @@
 # Greenpeace_quiz  option #1
 The Assignment from Greenpeace for Front-End dev application.
-The quiz application uses of Bootstrap and Jquery Frameworks to ensure a good functions extensibility and code reusability.
+The quiz application uses of Bootstrap and Jquery Frameworks to ensure a good functions extensibility and code re-usability.
 I tried to maintain the UI as clean as possible (for better integration in different websites or pages), but consistent with Greenpeace's colors and branding-identity.
 Initially the Categories of the quiz are collapsed, by clicking on a Category name the user can select one or more items under that category.
 Once the user select at least one option the panel heading changes the style for indicating the user that something is selected inside, this can be useful for closed panel categories. The code is quite extensible, for adding more categories we can simply add a category block in the page and change the global variable "total_categories" witch indicates the number of categories that are present.
