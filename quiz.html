@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Greenpeace Quiz </title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <script
+            src="https://code.jquery.com/jquery-3.2.1.min.js"
+            integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+            crossorigin="anonymous"></script>
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.js" crossorigin="anonymous"></script>
+    <link type="text/css" rel="stylesheet" href="style.css">
+
+    <script>
+        var total_categories = 3;
+        function highlightItem(cat, item) {
+            var this_item = $('#cat-' + cat + " .item:nth(" + item + ")");
+            this_item.toggleClass("selected");
+            if(this_item.hasClass("selected")){
+
+            }
+            var i_count = $('#cat-' + cat + " .item.selected").length;
+            if (i_count > 0) {
+                $('#heading-' + cat).addClass("selected");
+            } else {
+                $('#heading-' + cat).removeClass("selected");
+            }
+            var c_count = $(".panel-heading.selected").length;
+            if (c_count == total_categories) {
+                $("#result-btn").removeClass("hidden");
+            }
+
+
+        }
+        function showResults() {  //$('#modal_result').modal();
+            var res = $('#cat_list');
+            res.empty();
+            var i = 1;
+            var most_cat ="";
+            var most_i = 0;
+            for (; i <= total_categories; i++) {
+                var i_count = $('#cat-' + i + " .item.selected").length;
+                var this_cat = $('#heading-' + i + " .cat_name").text();
+                var block= "<li class='result'>" + this_cat +  "<span class='green'>" + getSelection(i) +  "</span></li>" ;
+                if(i_count > most_i){
+                    most_i = i_count;
+                    most_cat = this_cat;
+                }
+                res.append(block);
+            }
+            $("#most_a_cat").text(most_cat);
+            $("#cat_selections").text(most_i);
+            $("#modal_result").modal();
+        }
+
+        function getSelection(cat_id){
+            var block="";
+            $('#cat-' + cat_id + " .item").each(function(){
+                if($(this).hasClass("selected")){
+                    block += " [" + $(this).find(".item_name").text() +"] ";
+                }
+             }
+            );
+            return block;
+        }
+    </script>
+</head>
+<body>
+
+<div class="container">
+    <div class=""><img src="asset/img/Greenpeace-logo.png" id="logo"> </div>
+    <div class="modal fade" tabindex="99" role="dialog" aria-labelledby="Greenpeace Quiz results" id="modal_result">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <h1 class="green-heading">Results</h1>
+                <div id="result-content">
+                    <p>
+                        The Category with the most answers is: <span id="most_a_cat"></span> with <span
+                            id="cat_selections"></span> selections
+                    </p>
+                    <h4 class="green">Your Answers</h4>
+                    <ul id="cat_list">
+
+                    </ul>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+        <div class="panel panel-default">
+            <div class="panel-heading" role="tab" id="heading-1">
+                <h4 class="panel-title">
+                    <a role="button" data-toggle="collapse" data-parent="#accordion" href="#cat-1"
+                       aria-expanded="true" aria-controls="cat-1">
+                        <span class="cat_name"> Category One</span> <span class="lil_text"> (please pick one)</span>
+                    </a>
+                </h4>
+            </div>
+            <div id="cat-1" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading-1">
+                <div class="panel-body">
+                    <div class="row">
+                        <input type="hidden" name="cat-1-selection" id="cat-1-selection" value="">
+                        <div class="col-sm-4 col-md-3">
+                            <div class="item thumbnail" onclick="highlightItem(1,0);">
+                                <img src="asset/img/placeholder_square.jpg">
+                                <div class="caption">
+                                    <h4 class="item_name">Item 1</h4>
+                                    <p>Lorem Ipsum et dolor sit amet.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4 col-md-3">
+                            <div class="item thumbnail" onclick="highlightItem(1,1);">
+                                <img src="asset/img/placeholder_square.jpg">
+                                <div class="caption">
+                                    <h4 class="item_name">Item 2</h4>
+                                    <p>Lorem Ipsum et dolor sit amet.</p>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="col-sm-4 col-md-3">
+                            <div class="item thumbnail" onclick="highlightItem(1,2);">
+                                <img src="asset/img/placeholder_square.jpg">
+                                <div class="caption">
+                                    <h4 class="item_name">Item 3</h4>
+                                    <p>Lorem Ipsum et dolor sit amet.</p>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="col-sm-4 col-md-3">
+                            <div class="item thumbnail" onclick="highlightItem(1,3);">
+                                <img src="asset/img/placeholder_square.jpg">
+                                <div class="caption">
+                                    <h4 class="item_name">Item 4</h4>
+                                    <p>Lorem Ipsum et dolor sit amet.</p>
+                                </div>
+                            </div><!--item-->
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading" role="tab" id="heading-2">
+                <h4 class="panel-title">
+                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion"
+                       href="#cat-2" aria-expanded="false" aria-controls="cat-2">
+                        <span class="cat_name">Category Two</span> <span class="lil_text"> (please pick one)</span>
+                    </a>
+                </h4>
+            </div>
+            <div id="cat-2" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading-2">
+                <div class="panel-body">
+                    <input type="hidden" name="cat-2-selection" id="cat-2-selection" value="">
+                    <div class="col-sm-4 col-md-3">
+                        <div class="item thumbnail" onclick="highlightItem(2,0);">
+                            <img src="asset/img/placeholder_square.jpg">
+                            <div class="caption">
+                                <h4 class="item_name">Item 1</h4>
+                                <p>Lorem Ipsum et dolor sit amet.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-4 col-md-3">
+                        <div class="item thumbnail" onclick="highlightItem(2,1);">
+                            <img src="asset/img/placeholder_square.jpg">
+                            <div class="caption">
+                                <h4 class="item_name">Item 2</h4>
+                                <p>Lorem Ipsum et dolor sit amet.</p>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="col-sm-4 col-md-3">
+                        <div class="item thumbnail" onclick="highlightItem(2,2);">
+                            <img src="asset/img/placeholder_square.jpg">
+                            <div class="caption">
+                                <h4 class="item_name">Item 3</h4>
+                                <p>Lorem Ipsum et dolor sit amet.</p>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="col-sm-4 col-md-3">
+                        <div class="item thumbnail" onclick="highlightItem(2,3);">
+                            <img src="asset/img/placeholder_square.jpg">
+                            <div class="caption">
+                                <h4 class="item_name">Item 4</h4>
+                                <p>Lorem Ipsum et dolor sit amet.</p>
+                            </div>
+                        </div><!--item-->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading" role="tab" id="heading-3">
+                <h4 class="panel-title">
+                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion"
+                       href="#cat-3" aria-expanded="false" aria-controls="cat-3">
+                        <span class="cat_name">Category Three</span> <span class="lil_text"> (please pick one)</span>
+                    </a>
+                </h4>
+            </div>
+            <div id="cat-3" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading-3">
+                <div class="panel-body">
+                    <input type="hidden" name="cat-3-selection" id="cat-3-selection" value="">
+                    <div class="col-sm-4 col-md-3">
+                        <div class="item thumbnail" onclick="highlightItem(3,0);">
+                            <img src="asset/img/placeholder_square.jpg">
+                            <div class="caption">
+                                <h4 class="item_name">Item 1</h4>
+                                <p>Lorem Ipsum et dolor sit amet.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-4 col-md-3">
+                        <div class="item thumbnail" onclick="highlightItem(3,1);">
+                            <img src="asset/img/placeholder_square.jpg">
+                            <div class="caption">
+                                <h4 class="item_name">Item 2</h4>
+                                <p>Lorem Ipsum et dolor sit amet.</p>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="col-sm-4 col-md-3">
+                        <div class="item thumbnail" onclick="highlightItem(3,2);">
+                            <img src="asset/img/placeholder_square.jpg">
+                            <div class="caption">
+                                <h4 class="item_name">Item 3</h4>
+                                <p>Lorem Ipsum et dolor sit amet.</p>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="col-sm-4 col-md-3">
+                        <div class="item thumbnail" onclick="highlightItem(3,3);">
+                            <img src="asset/img/placeholder_square.jpg">
+                            <div class="caption">
+                                <h4 class="item_name">Item 4</h4>
+                                <p>Lorem Ipsum et dolor sit amet.</p>
+                            </div>
+                        </div><!--item-->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div>
+        <button id="result-btn" class="btn btn-primary hidden" onclick="showResults();">Show Results</button>
+    </div>
+</div><!--container-->
+
+</body>
+</html>
